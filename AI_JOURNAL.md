@@ -40,3 +40,9 @@ Tool: Claude Code. Claude drafts the entries from the real conversation. Shafiq 
 - **16:14:** the app ran on SQL Server. Chinese text was saved correctly. Two officers picking up the same claim together, 10 rounds: one 200 and one 409 each time.
 - **Not done:** the Docker start was not run, only its syntax was checked.
 - **16:19:** I accepted three AI choices: hidden reserve, reference made from the id, and nvarchar columns.
+
+## 26 Nov 2026, check against the brief
+
+- **Asked:** make sure the work follows the "Approach" part of the brief (backend first).
+- **Result:** the build order follows it. The README did not explain the priority, so the AI added that section. No code changed.
+- **05:49:** recorded.

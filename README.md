@@ -28,6 +28,14 @@ Angular -> REST -> Spring Boot (controller -> service -> repository) -> SQL Serv
 
 Status rules are in `Claim.java`. Access rules are in `SecurityConfig.java`. The full design is in [docs/design.md](docs/design.md).
 
+## Priorities
+
+The backend came first. The frontend was extended only after the backend tests passed.
+
+- **Backend:** claim rules, access rules, concurrent updates, errors and liability, with 16 automated tests.
+- **Frontend:** a login form and two screens for the main flow. It holds no business rules and has no automated tests.
+- **Reason:** the server must enforce every rule whichever client calls it.
+
 ## Main decisions
 
 - **One service.** One small domain and one transaction per action. Splitting it would add network failures with no benefit yet.
