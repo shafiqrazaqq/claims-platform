@@ -20,3 +20,11 @@ Tool: Claude Code. Claude drafts the entries from the real conversation. Shafiq 
 - **15:47:** 16 tests pass on H2. Not run on PostgreSQL yet.
 - **15:48:** backend started on H2 and answered real HTTP requests (login, submit, summary, Swagger).
 - **Waiting:** Node.js install approval for Angular, and Docker Desktop for PostgreSQL.
+- **15:49:** I approved the Node.js install. Angular 22.3.0 was chosen because it supports Node 26.
+- **Challenged:** I do not know PostgreSQL. I use Informix at work. **Result: pending my decision.**
+
+## 25 Nov 2026, frontend build
+
+- **AI built:** login, claimant screen and officer screen. I have not reviewed this code yet.
+- **16:02:** the AI ran the full flow in a browser against H2: submit, pick up, ask, answer, set reserve, approve, settle. Wrong login, future date, and hidden reserve also behaved as designed. No automated frontend tests.
+- **Not done:** PostgreSQL run. The database choice is still open.
