@@ -40,7 +40,7 @@ PostgreSQL            in-process event after commit -> notification log
 ```
 
 - Java 17, Spring Boot 3, Maven, JPA, Spring Security, Bean Validation, Flyway, Swagger/OpenAPI.
-- PostgreSQL through Docker Compose. Tests use H2 in PostgreSQL mode.
+- SQL Server, local or through Docker Compose. Tests use H2 in SQL Server mode. (Changed from PostgreSQL after approval, see the journal.)
 - The backend owns the API contract and publishes it through OpenAPI.
 
 ## Data model

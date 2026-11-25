@@ -2,7 +2,7 @@
 
 **Goal:** Build the approved design in `docs/design.md`, backend first.
 
-**Tech stack:** Java 17, Spring Boot 3, Maven, JPA, Flyway, PostgreSQL, H2 for tests, Angular.
+**Tech stack:** Java 17, Spring Boot 3, Maven, JPA, Flyway, SQL Server, H2 for tests, Angular.
 
 **Method:** One session, one commit per task, tests with each backend task. Clock started 25 Nov 2026 15:27. Hard stop 20:27.
 
@@ -45,4 +45,4 @@ Files: `frontend/`. Login form, auth interceptor, role guard, claimant screen, o
 
 ## Task 4: Handover
 
-- [ ] README with start steps, decisions, limits. Walkthrough notes. Run from a clean start on PostgreSQL. Commit.
+- [ ] README with start steps, decisions, limits. Walkthrough notes. Run from a clean start on SQL Server. Commit.

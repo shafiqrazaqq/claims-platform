@@ -28,3 +28,14 @@ Tool: Claude Code. Claude drafts the entries from the real conversation. Shafiq 
 - **AI built:** login, claimant screen and officer screen. I have not reviewed this code yet.
 - **16:02:** the AI ran the full flow in a browser against H2: submit, pick up, ask, answer, set reserve, approve, settle. Wrong login, future date, and hidden reserve also behaved as designed. No automated frontend tests.
 - **Not done:** PostgreSQL run. The database choice is still open.
+
+## 25 Nov 2026, database change
+
+- **AI proposed:** keep PostgreSQL.
+- **Overrode:** I chose SQL Server. I do not know PostgreSQL. I use Informix at work and wanted SQL that I know.
+- **AI changed:** driver, connection, table script, test database mode, Docker file. No Java code changed.
+- **Problem found:** H2 has no `datetimeoffset` type, so all 10 API tests failed. Fixed by adding the type in the test database only.
+- **AI choice:** `nvarchar` columns, so Chinese and Thai text is kept. **My review: pending.**
+- **16:12:** 16 tests pass on H2 and on SQL Server 2025 Express.
+- **16:14:** the app ran on SQL Server. Chinese text was saved correctly. Two officers picking up the same claim together, 10 rounds: one 200 and one 409 each time.
+- **Not done:** the Docker start was not run, only its syntax was checked.
