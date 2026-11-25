@@ -27,22 +27,22 @@ Files: `backend/pom.xml`, `ClaimsApplication`, `claim/Claim`, `ClaimStatus`, `Cl
 
 `Claim` methods: `pickUp(officer)`, `requestInfo(officer)`, `answerInfo()`, `changeReserve(officer, amount)`, `approve(officer, amount)`, `reject(officer, reason)`, `settle(officer)`.
 
-- [ ] Tests: full path to SETTLED, reject path, wrong status throws `InvalidTransitionException`, unassigned officer throws `AccessDeniedException`, reserve starts as the estimate.
-- [ ] Run `./mvnw test`. Commit.
+- [x] Tests: full path to SETTLED, reject path, wrong status throws `InvalidTransitionException`, unassigned officer throws `AccessDeniedException`, reserve starts as the estimate.
+- [x] Run `./mvnw test`. Commit.
 
 ## Task 2: API, database and security
 
 Files: `V1__claims.sql`, `ClaimActivity`, repositories, `ClaimService`, `ClaimController`, `ClaimChanged`, `NotificationListener`, `SecurityConfig`, `ApiExceptionHandler`, `application.yml`, `compose.yaml`. Test: `ClaimApiTest`.
 
-- [ ] Tests: main flow through HTTP, 401, 403, 404 for another claimant, 400 cases, second pick-up 409, stale update rejected, summary by currency.
-- [ ] Run `./mvnw verify`. Commit.
+- [x] Tests: main flow through HTTP, 401, 403, 404 for another claimant, 400 cases, second pick-up 409, stale update rejected, summary by currency.
+- [x] Run `./mvnw verify`. Commit.
 
 ## Task 3: Angular
 
 Files: `frontend/`. Login form, auth interceptor, role guard, claimant screen, officer screen, dev proxy to port 8080.
 
-- [ ] `ng build` passes and both screens work in the browser. Commit.
+- [x] `ng build` passes and both screens work in the browser. Commit.
 
 ## Task 4: Handover
 
-- [ ] README with start steps, decisions, limits. Walkthrough notes. Run from a clean start on SQL Server. Commit.
+- [x] README with start steps, decisions, limits. Walkthrough notes. Run from a clean start on SQL Server. Commit.
