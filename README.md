@@ -28,6 +28,15 @@ Angular -> REST -> Spring Boot (controller -> service -> repository) -> SQL Serv
 
 Status rules are in `Claim.java`. Access rules are in `SecurityConfig.java`. The full design is in [docs/design.md](docs/design.md).
 
+## How the problem was split
+
+- **Core data:** one `Claim` has many `ClaimActivity` rows. The activity rows are the timeline and the audit record.
+- **Two user types, one Angular app:** one login form and two routes, each guarded by role. The server makes the real check.
+- **API contract:** the backend defines it and publishes it through OpenAPI.
+- **Waiting and slow steps:** the status shows who must act next. A claim waits in `INFO_REQUESTED` until the claimant answers. Both screens have a Refresh button.
+- **Officer workload:** claims by status, claims by officer, and a claim list filtered by status.
+- **Outstanding liability:** open claims count the reserve and approved claims count the approved amount, per currency. Rejected and settled claims count zero.
+
 ## Priorities
 
 The backend came first. The frontend was extended only after the backend tests passed.

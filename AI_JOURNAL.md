@@ -46,3 +46,9 @@ Tool: Claude Code. Claude drafts the entries from the real conversation. Shafiq 
 - **Asked:** make sure the work follows the "Approach" part of the brief (backend first).
 - **Result:** the build order follows it. The README did not explain the priority, so the AI added that section. No code changed.
 - **05:49:** recorded.
+
+## 26 Nov 2026, preparing to share
+
+- **Asked:** pack the repository for GitHub and follow the "Approach" and "What to Build" parts of the brief.
+- **Result:** the AI added "How the problem was split" to the README, from the approved design. No code changed.
+- **06:12:** recorded. I have not finished reading the code yet.
