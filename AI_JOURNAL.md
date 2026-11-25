@@ -52,3 +52,6 @@ Tool: Claude Code. Claude drafts the entries from the real conversation. Shafiq 
 - **Asked:** pack the repository for GitHub and follow the "Approach" and "What to Build" parts of the brief.
 - **Result:** the AI added "How the problem was split" to the README, from the approved design. No code changed.
 - **06:12:** recorded. I have not finished reading the code yet.
+
+- **06:16, asked:** keep the project small and give the reason for every decision.
+- **Result:** the AI added `docs/decisions.md` and shortened the README. No code changed.

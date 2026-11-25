@@ -47,14 +47,7 @@ The backend came first. The frontend was extended only after the backend tests p
 
 ## Main decisions
 
-- **One service.** One small domain and one transaction per action. Splitting it would add network failures with no benefit yet.
-- **REST for user actions.** The user needs the answer at once, including a refusal.
-- **SQL Server.** Chosen over PostgreSQL because it is a database I have worked with. Text columns are `nvarchar` for APAC scripts.
-- **No Kafka yet.** No other service needs the events. An outbox table and Kafka come when one does.
-- **Timeline in the same transaction.** The audit record cannot be lost. A notification can be lost if the service crashes after commit.
-- **Optimistic locking.** Two officers cannot overwrite each other. The second gets HTTP 409.
-- **Liability per currency.** Amounts in different currencies are not added.
-- **Reserve hidden from claimants.** It is the insurer's internal cost estimate.
+One Spring Boot service, REST, SQL Server, and no Kafka yet. Every decision, its reason and its cost are in [docs/decisions.md](docs/decisions.md).
 
 ## Known limits
 
