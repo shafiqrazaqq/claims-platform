@@ -1,0 +1,94 @@
+@if (error()) {
+  <p class="error" role="alert">{{ error() }}</p>
+}
+@if (summary(); as s) {
+  <section class="columns">
+    <div class="card">
+      <h2>Outstanding liability</h2>
+      @for (o of s.outstanding; track o.currency) {
+        <p class="big">{{ o.currency }} {{ o.amount | number: '1.2-2' }}</p>
+      } @empty {
+        <p>None</p>
+      }
+    </div>
+    <div class="card">
+      <h2>Claims by status</h2>
+      @for (x of s.byStatus; track x.status) {
+        <p>{{ x.status }}: <strong>{{ x.count }}</strong></p>
+      } @empty {
+        <p>None</p>
+      }
+    </div>
+    <div class="card">
+      <h2>Claims by officer</h2>
+      @for (x of s.byOfficer; track x.officer + x.status) {
+        <p>{{ x.officer }}, {{ x.status }}: <strong>{{ x.count }}</strong></p>
+      } @empty {
+        <p>None</p>
+      }
+    </div>
+  </section>
+}
+<div class="columns">
+  <section class="card">
+    <h2>Claims <button type="button" (click)="refresh()">Refresh</button></h2>
+    <label>Status
+      <select #f (change)="changeFilter(f.value)">
+        <option value="">All</option>
+        @for (s of statuses; track s) {
+          <option [value]="s">{{ s }}</option>
+        }
+      </select>
+    </label>
+    <table>
+      <thead>
+        <tr><th>Reference</th><th>Claimant</th><th>Status</th><th>Officer</th></tr>
+      </thead>
+      <tbody>
+        @for (c of claims()?.content; track c.id) {
+          <tr>
+            <td><button type="button" class="link" (click)="open(c.id)">{{ c.reference }}</button></td>
+            <td>{{ c.claimant }}</td>
+            <td><span class="status">{{ c.status }}</span></td>
+            <td>{{ c.assignedOfficer ?? '-' }}</td>
+          </tr>
+        } @empty {
+          <tr><td colspan="4">No claims.</td></tr>
+        }
+      </tbody>
+    </table>
+    @if (claims(); as p) {
+      @if (p.page.totalPages > 1) {
+        <p>
+          <button type="button" [disabled]="p.page.number === 0" (click)="load(p.page.number - 1)">Previous</button>
+          Page {{ p.page.number + 1 }} of {{ p.page.totalPages }}
+          <button type="button" [disabled]="p.page.number + 1 >= p.page.totalPages" (click)="load(p.page.number + 1)">Next</button>
+        </p>
+      }
+    }
+  </section>
+
+  @if (selected(); as detail) {
+    @let c = detail.claim;
+    @let mine = c.assignedOfficer === auth.user()?.username;
+    <section class="card">
+      <app-claim-info [detail]="detail" />
+
+      <!-- Buttons follow the status to help the user. The server enforces the rules. -->
+      @if (c.status === 'SUBMITTED') {
+        <button type="button" [disabled]="busy()" (click)="run(api.pickUp(c.id))">Pick up</button>
+      }
+      @if (mine && c.status === 'UNDER_REVIEW') {
+        <label>Amount ({{ c.currency }}) <input type="number" step="0.01" min="0.01" [formControl]="amount" /></label>
+        <button type="button" [disabled]="amount.invalid || busy()" (click)="run(api.approve(c.id, amount.value))">Approve amount</button>
+        <button type="button" [disabled]="amount.invalid || busy()" (click)="run(api.changeReserve(c.id, amount.value))">Set reserve</button>
+        <label>Question or reject reason <textarea rows="3" maxlength="2000" [formControl]="message"></textarea></label>
+        <button type="button" [disabled]="message.invalid || busy()" (click)="run(api.requestInfo(c.id, message.value))">Ask claimant</button>
+        <button type="button" [disabled]="message.invalid || busy()" (click)="run(api.reject(c.id, message.value))">Reject</button>
+      }
+      @if (mine && c.status === 'APPROVED') {
+        <button type="button" [disabled]="busy()" (click)="run(api.settle(c.id))">Mark settled</button>
+      }
+    </section>
+  }
+</div>

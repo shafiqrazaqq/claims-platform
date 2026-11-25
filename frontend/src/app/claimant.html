@@ -1,0 +1,62 @@
+@if (error()) {
+  <p class="error" role="alert">{{ error() }}</p>
+}
+<div class="columns">
+  <section class="card">
+    <h2>Report an incident</h2>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <label>Type
+        <select formControlName="type">
+          <option value="MOTOR">Motor</option>
+          <option value="PROPERTY">Property</option>
+        </select>
+      </label>
+      <label>Market (2 letters) <input formControlName="market" maxlength="2" /></label>
+      <label>Policy number <input formControlName="policyNumber" maxlength="50" /></label>
+      <label>Incident date <input type="date" formControlName="incidentDate" /></label>
+      <label>What happened <textarea formControlName="description" rows="3" maxlength="2000"></textarea></label>
+      <label>Currency (3 letters) <input formControlName="currency" maxlength="3" /></label>
+      <label>Estimated amount <input type="number" step="0.01" min="0.01" formControlName="estimatedAmount" /></label>
+      <button [disabled]="form.invalid || busy()">Submit claim</button>
+    </form>
+  </section>
+
+  <section class="card">
+    <h2>My claims <button type="button" (click)="refresh()">Refresh</button></h2>
+    <table>
+      <thead>
+        <tr><th>Reference</th><th>Type</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        @for (c of claims()?.content; track c.id) {
+          <tr>
+            <td><button type="button" class="link" (click)="open(c.id)">{{ c.reference }}</button></td>
+            <td>{{ c.type }}</td>
+            <td><span class="status">{{ c.status }}</span></td>
+          </tr>
+        } @empty {
+          <tr><td colspan="3">No claims yet.</td></tr>
+        }
+      </tbody>
+    </table>
+    @if (claims(); as p) {
+      @if (p.page.totalPages > 1) {
+        <p>
+          <button type="button" [disabled]="p.page.number === 0" (click)="load(p.page.number - 1)">Previous</button>
+          Page {{ p.page.number + 1 }} of {{ p.page.totalPages }}
+          <button type="button" [disabled]="p.page.number + 1 >= p.page.totalPages" (click)="load(p.page.number + 1)">Next</button>
+        </p>
+      }
+    }
+  </section>
+
+  @if (selected(); as detail) {
+    <section class="card">
+      <app-claim-info [detail]="detail" />
+      @if (detail.claim.status === 'INFO_REQUESTED') {
+        <label>Your answer <textarea [formControl]="answer" rows="3" maxlength="2000"></textarea></label>
+        <button type="button" [disabled]="answer.invalid || busy()" (click)="sendAnswer(detail.claim.id)">Send answer</button>
+      }
+    </section>
+  }
+</div>
