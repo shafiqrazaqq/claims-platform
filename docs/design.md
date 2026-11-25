@@ -45,7 +45,7 @@ PostgreSQL            in-process event after commit -> notification log
 
 ## Data model
 
-- **Claim**: id, reference, claimant username, market, type (MOTOR or PROPERTY), policy number, incident date, description, currency, estimated amount, reserve amount, approved amount, status, assigned officer, decision reason, version, created and updated times.
+- **Claim**: id, reference (made from the id, not stored), claimant username, market, type (MOTOR or PROPERTY), policy number, incident date, description, currency, estimated amount, reserve amount, approved amount, status, assigned officer, decision reason, version, created and updated times.
 - **ClaimActivity**: id, claim id, type, actor, message, time. One claim has many activities. This is the timeline and the audit record.
 
 ## Status rules
@@ -69,7 +69,7 @@ Any other change returns HTTP 409.
 | APPROVED | Approved amount |
 | REJECTED, SETTLED | 0 |
 
-The reserve starts as the claimant's estimate. The assigned officer can change it while the claim is UNDER_REVIEW. Totals are grouped by currency and are never added across currencies.
+The reserve starts as the claimant's estimate. The assigned officer can change it while the claim is UNDER_REVIEW. Totals are grouped by currency and are never added across currencies. The reserve is internal: claimants never see the amount or its changes.
 
 ## API
 

@@ -1,0 +1,5 @@
+package com.claims.claim;
+
+public enum ActivityType {
+    SUBMITTED, PICKED_UP, INFO_REQUESTED, INFO_PROVIDED, RESERVE_CHANGED, APPROVED, REJECTED, SETTLED
+}
