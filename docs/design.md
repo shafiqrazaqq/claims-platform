@@ -36,7 +36,7 @@ Angular (login, claimant screen, officer screen)
    | REST + JSON
 Spring Boot service: controller -> service -> repository
    |                       |
-PostgreSQL            in-process event after commit -> notification log
+SQL Server            in-process event after commit -> notification log
 ```
 
 - Java 17, Spring Boot 3, Maven, JPA, Spring Security, Bean Validation, Flyway, Swagger/OpenAPI.
