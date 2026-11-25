@@ -16,5 +16,7 @@ Tool: Claude Code. Claude drafts the entries from the real conversation. Shafiq 
 
 - **AI choice, not in the approved design:** hide the reserve from claimants. The reserve is the insurer's own cost estimate, so claimants get null and do not see reserve changes in the timeline. **My review: pending.**
 - **AI choice, differs from the approved design:** the reference (CLM-000001) is made from the id and not stored. **My review: pending.**
-- **Order:** the API test was written before the service finished. It failed first (10 of 10), then passed.
+- **Test order:** the service files were meant to come first, but a tool error stopped them being saved. The API test ran without them and failed 10 of 10, then passed once they were added. This was not planned test-first work.
 - **15:47:** 16 tests pass on H2. Not run on PostgreSQL yet.
+- **15:48:** backend started on H2 and answered real HTTP requests (login, submit, summary, Swagger).
+- **Waiting:** Node.js install approval for Angular, and Docker Desktop for PostgreSQL.
