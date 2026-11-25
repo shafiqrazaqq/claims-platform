@@ -1,6 +1,6 @@
 # Claims platform design
 
-Status: waiting for Shafiq's approval. Nothing is built yet.
+Status: approved by Shafiq on 25 Nov 2026.
 
 ## Why
 
